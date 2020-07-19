@@ -1,3 +1,13 @@
+# React WordPress Image Slider
+## Requirements for local development
+* React
+* Webpack
+* PHP
+* Docker
+* Wordpress REST API
+* Ghost Inspector API
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
