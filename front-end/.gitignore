@@ -28,3 +28,4 @@ package-lock.json
 .vercel
 
 /src/data.js
+.vscode 
