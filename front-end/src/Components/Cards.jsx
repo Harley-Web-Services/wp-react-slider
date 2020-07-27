@@ -1,6 +1,6 @@
 import React from 'react'
-import Ccard from './Card'
-import PropTypes from 'prop-types'
+import Card from './Card'
+
 
 const Cards = props => {
     return (
@@ -8,16 +8,12 @@ const Cards = props => {
       {/* Using the cards prop, map over the list creating a 
           new Card component for each passing the card as the only prop*/}
        {props.cards.map(card => {
-         return <Ccard card={card} key={card.tag} />;
+         return <Card card={card} key={card.id} />;
         })}
     </div>
 
     )
 }
 
-Cards.propTypes = {
-    cardsObject: PropTypes.shape({
-        cards:PropTypes.object,
-    })
-}
+
 export default Cards            

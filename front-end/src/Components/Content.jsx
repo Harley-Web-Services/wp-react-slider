@@ -1,37 +1,72 @@
-import React,{Component} from 'react';
+import React,{Component} from 'react'
 import Cards from './Cards';
 import Tabs from './Tabs';
+import axios from 'axios'
+import {baseUrl} from './auth/baseUrl'
 
 
 
 // Importing our tab and card data. No need to change anything here.
-import { tabData, cardData } from '../data';
+// import { tabData, cardData } from '../data';
+import {tabData} from '../data'
+const cardURL = `${baseUrl}/Customers`
+console.log(Tabs['tabs'])
 
 export default class Content extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: 'all',
+      selected: 'All',
+    
       tabs: [],
-      cards: []
+      cards: [],
+      
+   
+  
     };
-  }
-
-  componentDidMount() {
-    // Once the component has mounted, get the data and reflect that data on the state.
-    this.setState({
-      tabs: tabData,
-      cards: cardData
-    })
-  }
-
-  changeSelected = tab => {
-    // this function should take in the tab and update the state with the new tab.
-    this.setState({
-      selected: tab
-    })
   };
 
+
+
+  handleChange = e =>{
+    this.setState({[e.target.name]: e.target.value}, ()=> {
+      if (this.props.onChange) {
+        this.props.onChange(this.state)
+      }
+    })
+  }
+
+  componentDidMount = async() => {
+  
+    // Once the component has mounted, get the data and reflect that data on the state.
+  await axios.get(cardURL)
+    .then((resp) =>{
+
+      this.setState({
+        tabs : tabData,
+        cards:resp.data
+      })
+      
+    })
+    .catch((err) => {console.log(err)})
+  }
+  changeSelected = tab => {
+
+    // this function should take in the tab and update the state with the new tab.
+    this.setState({
+      selected: tab,
+      
+  
+    })
+  };
+ scrollEffect =() => {
+   const sticky = Tabs.offsetTop
+   if (window.pageYOffset > sticky) {
+     Tabs.className.add("sticky");
+   } else {
+     Tabs.className.remove("sticky")
+   }
+ }
   filterCards = () => {
     /* Right now this function only returns the cards on state.
       We're going to make this function more dynamic
@@ -44,22 +79,25 @@ export default class Content extends Component {
         - else, it should only return those cards whose 'tab' matched this.state.selected.
     */
     if(this.state.selected === 'All') return this.state.cards
-    else if(this.state.selected === null || '') return this.setState(this.state.selected = 'All')
+  
 
-        let filteredCards = this.state.cards.filter(card => card.tag === this.state.selected)
+    let filteredCards = this.state.cards.filter(card => card.tab === this.state.selected)
     return filteredCards
   };
 
   render() {
     return (
-      <div className="content-container">
+      <div onScroll={this.scrollEffect} className="content-container">
         {/*
           Add 2 props to the Tabs component,
           `selectedTab` that includes the currently selected tab
           and `selectTabHandler` that includes the function to change the selected tab
         */}
-        <Tabs tabs={this.state.tabs} selectedTab={this.state.selected} selectedTabHandler={this.changeSelected}/>
-        <Cards cards={this.filterCards()} />
+        
+        <Tabs tabs={this.state.tabs}  selectedTab={this.state.selected} selectedTabHandler={this.changeSelected} onChange={this.handleChange}/>
+      
+        <Cards cards={this.filterCards() } onChange={this.handleChange} />
+     
       </div>
     );
   }

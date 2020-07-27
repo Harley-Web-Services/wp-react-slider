@@ -1,13 +1,38 @@
-import React from 'react';
+import React from 'react'
 import { Wrapper} from 'bushido-strap'
 import Content from './Components/Content'
-import './App.scss';
+import Login from './Components/auth/admin-login'
 
-function App() {
+
+import {
+  BrowserRouter as Router, 
+  Switch,
+  Route,
+
+} from "react-router-dom"
+
+function App(props) {
+
+
   return (
-     <Wrapper>
-   <Content/>
-     </Wrapper>
+    <Router>
+
+    <Route exact path="/">
+      <Wrapper>
+     <Content/>
+      </Wrapper>
+    </Route>
+     
+    <Switch>
+    
+     <Route path="/login">
+       <Login/>
+     </Route>
+ 
+
+     </Switch>
+
+     </Router>
   );
 }
 
