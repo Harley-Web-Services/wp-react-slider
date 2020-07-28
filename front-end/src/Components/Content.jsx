@@ -8,7 +8,7 @@ import {baseUrl} from './auth/baseUrl'
 
 // Importing our tab and card data. No need to change anything here.
 // import { tabData, cardData } from '../data';
-import {tabData} from '../data'
+const tabUrl = 'https://reactadmin3.herokuapp.com/tabData'
 const cardURL = `${baseUrl}/Customers`
 console.log(Selector['tabs'])
 
@@ -26,16 +26,6 @@ export default class Content extends Component {
     };
   };
 
-
-
-  handleChange = e =>{
-    this.setState({[e.target.name]: e.target.value}, ()=> {
-      if (this.props.onChange) {
-        this.props.onChange(this.state)
-      }
-    })
-  }
-
   componentDidMount = async() => {
   
     // Once the component has mounted, get the data and reflect that data on the state.
@@ -43,13 +33,23 @@ export default class Content extends Component {
     .then((resp) =>{
 
       this.setState({
-        tabs : tabData,
+        
         cards:resp.data
       })
       
     })
+    await axios.get(tabUrl)
+    .then((resp) => {
+      this.setState({
+        tabs : resp.data,
+        
+      })
+    })
     .catch((err) => {console.log(err)})
+  
   }
+
+  
   changeSelected = tab => {
 
     // this function should take in the tab and update the state with the new tab.
