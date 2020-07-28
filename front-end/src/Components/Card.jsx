@@ -26,7 +26,7 @@ const Card = props => {
                 </div>
                 <span>{props.card.customer}</span><br/>
                 <p>{props.card.comment}</p>
-                 <div>{isAuth()}</div>
+                 
             </div>
             </Ccard>
         </Wrapper>

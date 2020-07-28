@@ -23,14 +23,7 @@ function App(props) {
       </Wrapper>
     </Route>
      
-    <Switch>
-    
-     <Route path="/login">
-       <Login/>
-     </Route>
- 
-
-     </Switch>
+  
 
      </Router>
   );
