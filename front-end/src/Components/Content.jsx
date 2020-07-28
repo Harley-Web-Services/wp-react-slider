@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 import Cards from './Cards';
-import Tabs from './Tabs';
+import Selector from './Tabs';
 import axios from 'axios'
 import {baseUrl} from './auth/baseUrl'
 
@@ -10,7 +10,7 @@ import {baseUrl} from './auth/baseUrl'
 // import { tabData, cardData } from '../data';
 import {tabData} from '../data'
 const cardURL = `${baseUrl}/Customers`
-console.log(Tabs['tabs'])
+console.log(Selector['tabs'])
 
 export default class Content extends Component {
   constructor(props) {
@@ -60,11 +60,11 @@ export default class Content extends Component {
     })
   };
  scrollEffect =() => {
-   const sticky = Tabs.offsetTop
+   const sticky = Selector.offsetTop
    if (window.pageYOffset > sticky) {
-     Tabs.className.add("sticky");
+     Selector.className.add("sticky");
    } else {
-     Tabs.className.remove("sticky")
+     Selector.className.remove("sticky")
    }
  }
   filterCards = () => {
@@ -89,12 +89,12 @@ export default class Content extends Component {
     return (
       <div onScroll={this.scrollEffect} className="content-container">
         {/*
-          Add 2 props to the Tabs component,
+          Add 2 props to the Selector component,
           `selectedTab` that includes the currently selected tab
           and `selectTabHandler` that includes the function to change the selected tab
         */}
         
-        <Tabs tabs={this.state.tabs}  selectedTab={this.state.selected} selectedTabHandler={this.changeSelected} onChange={this.handleChange}/>
+        <Selector tabs={this.state.tabs}  selectedTab={this.state.selected} selectedTabHandler={this.changeSelected} onChange={this.handleChange}/>
       
         <Cards cards={this.filterCards() } onChange={this.handleChange} />
      

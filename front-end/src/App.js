@@ -1,12 +1,12 @@
 import React from 'react'
 import { Wrapper} from 'bushido-strap'
 import Content from './Components/Content'
-import Login from './Components/auth/admin-login'
+
 
 
 import {
   BrowserRouter as Router, 
-  Switch,
+  
   Route,
 
 } from "react-router-dom"

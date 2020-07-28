@@ -8,6 +8,7 @@
     "bushido-strap": "^3.4.7",
     "dotenv": "^8.2.0",
     "json-server": "^0.16.1",
+    "muicss": "^0.10.2",
     "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
     "ra-data-json-server": "^3.7.1",
@@ -27,7 +28,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "node ./scripts/build-non-split.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -45,5 +46,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "rewire": "^5.0.0"
   }
 }
