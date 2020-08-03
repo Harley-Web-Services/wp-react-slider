@@ -10,7 +10,9 @@ const Cards = props => {
        {props.cards.map(card => {
          return <Card card={card} key={card.id} />;
         })}
+       
     </div>
+
 
     )
 }

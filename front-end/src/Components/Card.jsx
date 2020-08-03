@@ -1,5 +1,6 @@
 import React from 'react';
 import { Wrapper, Card as Ccard } from 'bushido-strap';
+
 // import {adminUrl} from  './auth/baseUrl'
 const Card = props => {
 //  const token = localStorage.getItem('token')
@@ -28,6 +29,7 @@ const Card = props => {
                 <p>{props.card.comment}</p>
                  
             </div>
+         
             </Ccard>
         </Wrapper>
     )

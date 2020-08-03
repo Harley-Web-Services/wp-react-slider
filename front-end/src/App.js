@@ -10,11 +10,13 @@ import {
   Route,
 
 } from "react-router-dom"
+import Footer from './Components/footer'
 
 function App(props) {
 
 
   return (
+    <>
     <Router>
 
     <Route exact path="/">
@@ -24,8 +26,9 @@ function App(props) {
     </Route>
      
   
-
      </Router>
+      <Footer/>
+      </>
   );
 }
 
